@@ -3,7 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios'
 
+//全局axios链接
+axios.defaults.baseURL = 'https://wd5509504244buvhbx.wilddogio.com/'
 
 Vue.config.productionTip = false
 
