@@ -6,7 +6,7 @@ import router from './router'
 import axios from 'axios'
 
 //全局axios链接
-axios.defaults.baseURL = 'https://wd5509504244buvhbx.wilddogio.com/'
+axios.defaults.baseURL = 'https://wd0156044779nletio.wilddogio.com/'
 
 Vue.config.productionTip = false
 
