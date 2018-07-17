@@ -61,13 +61,14 @@
   </div>
 </template>
 <script>
+  import axios from "axios"
   export default{
     data(){
       return{
         nothing:'购物车没有商品',
         baskets:[],
-        getMenuItems:{
-          1: {
+        //getMenuItems:{
+          /*1: {
             'name': '榴莲蛋糕',
             'description': '这是喜欢吃榴莲朋友的最佳选择',
             'options': [{
@@ -99,11 +100,15 @@
               'size': 12,
               'price': 88
             }]
-          }
-        }
+          }*/
+        //}
       }
     },
     computed:{
+      getMenuItems(){
+        //从vuex获取数据
+        return this.$store.state.menuItems
+      },
       total(){
         let totalCost = 0;
         for(let i in this.baskets){
@@ -113,7 +118,18 @@
         return totalCost
       }
     },
+    created(){
+      this.fetchData()
+    },
     methods:{
+      fetchData(){
+        /*fetch("https://wd0156044779nletio.wilddogio.com/menu.json")
+          .then(res => res.json())
+          .then(data => this.getMenuItems = data)
+          .catch(err => console.log(err))*/
+        this.http.get("menu.json")
+          .then(res => this.$store.commit("setMenuItems",res.data))
+      },
       addToBasket(item,option){
         let basket = {
           name:item.name,

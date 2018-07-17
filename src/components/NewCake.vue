@@ -69,13 +69,19 @@
           ]
         }
         // axios vue-resource es6 fetch
-         fetch("https://wd0156044779nletio.wilddogio.com/menu.json",{
-           method:"POST",
-           body:JSON.stringify(data)
-         })
-           .then(res => res.json())
-           .then(data => this.$router.push({name:"menuLink"}))
-           .catch(err => console.log(err))
+//         fetch("https://wd0156044779nletio.wilddogio.com/menu.json",{
+//           method:"POST",
+//           body:JSON.stringify(data)
+//         })
+//           .then(res => res.json())
+//           //.then(data => this.$router.push({name:"menuLink"}))
+//
+//           .then(data => this.$store.commit('pushToMenuItems',data))
+//           .catch(err => console.log(err))
+        //数据保存到vuex中
+        this.http.post("menu.json",data)
+         .then(res => this.$store.commit("pushToMenuItems",data))
+
       },
     }
   }

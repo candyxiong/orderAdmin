@@ -32,12 +32,23 @@
   export default {
     data () {
       return {
-        getMenuItems:[]
+        //getMenuItems:[]
         //name:'JayChou'
       }
     },
     components:{
       'app-new-pizza':NewCake
+    },
+    computed:{
+      getMenuItems:{
+        get(){
+          //从vuex获取数据
+          return this.$store.state.menuItems
+        },
+        set(){
+
+        }
+      },
     },
     created(){
       fetch("https://wd0156044779nletio.wilddogio.com/menu.json")
@@ -48,7 +59,9 @@
             data[key].id = key;
             menuArr.push(data[key])
           }
-        this.getMenuItems = menuArr
+          //数据同步
+          this.$store.commit('setMenuItems',menuArr) //数组
+        //this.getMenuItems = menuArr
       })
       .catch(err => console.log(err))
     },
@@ -59,7 +72,10 @@
           method:"DELETE"
         })
           .then(res => res.json())
-          .then(data => this.$router.push({name:"menuLink"}))
+          //.then(data => this.$router.push({name:"menuLink"}))
+          .then(data => {
+            this.$store.commit('removeMenuItems',item)
+          })
         .catch(err => console.log(err))
       }
     }
