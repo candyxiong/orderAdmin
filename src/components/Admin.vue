@@ -66,6 +66,7 @@
       .catch(err => console.log(err))
     },
     methods:{
+
       deleteItem(item){
         console.log(item);
         fetch("https://wd0156044779nletio.wilddogio.com/menu/"+item.id+"/.json",{
